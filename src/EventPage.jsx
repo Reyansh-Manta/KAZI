@@ -40,6 +40,7 @@ export default function EventPage({ user }) {
   const [submissionLink, setSubmissionLink] = useState('');
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [submissionDocId, setSubmissionDocId] = useState(null);
 
   const [checkingRegistration, setCheckingRegistration] = useState(true);
 
@@ -73,6 +74,8 @@ export default function EventPage({ user }) {
             const subSnap = await getDocs(subQ);
             if (!subSnap.empty) {
               setSubmissionSuccess(true);
+              setSubmissionDocId(subSnap.docs[0].id);
+              setSubmissionLink(subSnap.docs[0].data().submissionLink);
             }
           }
           setSuccess(true);
@@ -149,12 +152,20 @@ export default function EventPage({ user }) {
     e.preventDefault();
     setSubmissionLoading(true);
     try {
-      await addDoc(collection(db, `${event.title} submissions`), {
-        userId: user.uid,
-        registrationId: registrationId,
-        submissionLink: submissionLink,
-        timestamp: serverTimestamp()
-      });
+      if (submissionDocId) {
+        await updateDoc(doc(db, `${event.title} submissions`, submissionDocId), {
+          submissionLink: submissionLink,
+          timestamp: serverTimestamp()
+        });
+      } else {
+        const docRef = await addDoc(collection(db, `${event.title} submissions`), {
+          userId: user.uid,
+          registrationId: registrationId,
+          submissionLink: submissionLink,
+          timestamp: serverTimestamp()
+        });
+        setSubmissionDocId(docRef.id);
+      }
       setSubmissionSuccess(true);
     } catch (err) {
       console.error(err);
@@ -216,7 +227,7 @@ export default function EventPage({ user }) {
               </button>
             </div>
 
-            {event.requiresSubmission && !submissionSuccess && (
+            {event.requiresSubmission && (
               <form onSubmit={handleLinkSubmit} style={{ marginTop: '3rem', padding: '1.5rem', background: 'white', borderRadius: '12px', border: '1px solid rgba(26, 71, 49, 0.2)', textAlign: 'left' }}>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
                   {event.title === 'Photopia' ? 'Submit Your Photograph' : 'Submit Your Presentation'}
@@ -227,7 +238,7 @@ export default function EventPage({ user }) {
                   <small style={{color: 'var(--text-secondary)', marginTop: '4px'}}>Please ensure the link is publicly accessible.</small>
                 </div>
                 <button type="submit" disabled={submissionLoading} className="google-btn" style={{ marginTop: '1rem', borderRadius: '12px', padding: '10px 16px', width: 'auto' }}>
-                  {submissionLoading ? 'Submitting...' : 'Submit Link'}
+                  {submissionLoading ? 'Submitting...' : (submissionDocId ? 'Update Link' : 'Submit Link')}
                 </button>
               </form>
             )}
