@@ -26,7 +26,10 @@ export default function EventPage({ user }) {
     bgmiUid: '',
     bgmiIgn: '',
     experience: '',
-    activeSkill: ''
+    activeSkill: '',
+    chessId: '',
+    peakRating: '',
+    currentRating: ''
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -107,6 +110,12 @@ export default function EventPage({ user }) {
         registrationData.house = formData.house;
         registrationData.whatsappNumber = formData.whatsappNumber;
         registrationData.experience = formData.experience;
+      }
+      
+      if (event.title === 'Chaturanga') {
+        registrationData.chessId = formData.chessId;
+        registrationData.peakRating = formData.peakRating;
+        registrationData.currentRating = formData.currentRating;
       }
       
       if (event.title === 'Free Fire') {
@@ -305,6 +314,25 @@ export default function EventPage({ user }) {
                 <div className="form-group">
                   <label>BGMI In-Game Name (IGN) *</label>
                   <input type="text" required value={formData.bgmiIgn} onChange={(e) => setFormData({...formData, bgmiIgn: e.target.value})} className="form-input" />
+                </div>
+              </>
+            )}
+
+            {event.title === 'Chaturanga' && (
+              <>
+                <div className="form-group">
+                  <label>Chess.com ID *</label>
+                  <input type="text" required value={formData.chessId} onChange={(e) => setFormData({...formData, chessId: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Peak Rating *</label>
+                  <input type="number" required min="0" value={formData.peakRating} onChange={(e) => setFormData({...formData, peakRating: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Current Rating *</label>
+                  <input type="number" required min="0" value={formData.currentRating} onChange={(e) => setFormData({...formData, currentRating: e.target.value})} className="form-input" />
                 </div>
               </>
             )}
