@@ -56,7 +56,7 @@ export default function EventPage({ user }) {
       if (!user || !event) return;
       try {
         const q = query(
-          collection(db, 'registrations'), 
+          collection(db, `${event.title} registrations`), 
           where('eventId', '==', event.id),
           where('userId', '==', user.uid)
         );
@@ -64,9 +64,16 @@ export default function EventPage({ user }) {
         if (!querySnapshot.empty) {
           const docSnap = querySnapshot.docs[0];
           setRegistrationId(docSnap.id);
-          const data = docSnap.data();
-          if (event.requiresSubmission && data.submissionLink) {
-            setSubmissionSuccess(true);
+          
+          if (event.requiresSubmission) {
+            const subQ = query(
+              collection(db, `${event.title} submissions`),
+              where('userId', '==', user.uid)
+            );
+            const subSnap = await getDocs(subQ);
+            if (!subSnap.empty) {
+              setSubmissionSuccess(true);
+            }
           }
           setSuccess(true);
         }
@@ -129,7 +136,7 @@ export default function EventPage({ user }) {
         registrationData.bgmiIgn = formData.bgmiIgn;
       }
 
-      const docRef = await addDoc(collection(db, 'registrations'), registrationData);
+      const docRef = await addDoc(collection(db, `${event.title} registrations`), registrationData);
       setRegistrationId(docRef.id);
       setSuccess(true);
     } catch (err) {
@@ -142,8 +149,11 @@ export default function EventPage({ user }) {
     e.preventDefault();
     setSubmissionLoading(true);
     try {
-      await updateDoc(doc(db, 'registrations', registrationId), {
-        submissionLink: submissionLink
+      await addDoc(collection(db, `${event.title} submissions`), {
+        userId: user.uid,
+        registrationId: registrationId,
+        submissionLink: submissionLink,
+        timestamp: serverTimestamp()
       });
       setSubmissionSuccess(true);
     } catch (err) {
