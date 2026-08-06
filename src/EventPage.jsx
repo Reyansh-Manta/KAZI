@@ -15,7 +15,18 @@ export default function EventPage({ user }) {
     email: user?.email || '',
     region: '',
     source: '',
-    otherSource: ''
+    otherSource: '',
+    editingLevel: '',
+    rollNo: '',
+    gender: '',
+    house: '',
+    whatsappNumber: '',
+    ffUid: '',
+    ffIgn: '',
+    bgmiUid: '',
+    bgmiIgn: '',
+    experience: '',
+    activeSkill: ''
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -74,7 +85,7 @@ export default function EventPage({ user }) {
     setLoading(true);
 
     try {
-      const docRef = await addDoc(collection(db, 'registrations'), {
+      const registrationData = {
         eventId: event.id,
         eventTitle: event.title,
         userId: user.uid,
@@ -84,7 +95,32 @@ export default function EventPage({ user }) {
         region: formData.region,
         source: formData.source === 'Other' ? formData.otherSource : formData.source,
         timestamp: serverTimestamp()
-      });
+      };
+      
+      if (event.title === 'Photopia') {
+        registrationData.editingLevel = formData.editingLevel;
+      }
+      
+      if (event.title === 'Free Fire' || event.title === 'BGMI') {
+        registrationData.rollNo = formData.rollNo;
+        registrationData.gender = formData.gender;
+        registrationData.house = formData.house;
+        registrationData.whatsappNumber = formData.whatsappNumber;
+        registrationData.experience = formData.experience;
+      }
+      
+      if (event.title === 'Free Fire') {
+        registrationData.ffUid = formData.ffUid;
+        registrationData.ffIgn = formData.ffIgn;
+        registrationData.activeSkill = formData.activeSkill;
+      }
+      
+      if (event.title === 'BGMI') {
+        registrationData.bgmiUid = formData.bgmiUid;
+        registrationData.bgmiIgn = formData.bgmiIgn;
+      }
+
+      const docRef = await addDoc(collection(db, 'registrations'), registrationData);
       setRegistrationId(docRef.id);
       setSuccess(true);
     } catch (err) {
@@ -127,7 +163,7 @@ export default function EventPage({ user }) {
           Presented by {event.region} Region (Collab: {event.collab})
         </p>
 
-        <p style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.6', marginTop: '0.75rem', marginBottom: '1rem' }}>
+        <p style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.6', marginTop: '0.75rem', marginBottom: '1rem', whiteSpace: 'pre-wrap' }}>
           {event.description}
         </p>
 
@@ -145,6 +181,14 @@ export default function EventPage({ user }) {
               <a href="https://chat.whatsapp.com/placeholder" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
                 Join WhatsApp Group
               </a>
+              {event.title === 'Ideathon' && (
+                <a href="https://binaryminds.vercel.app/events" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none', background: 'white', color: 'var(--primary-color)', border: '2px solid var(--primary-color)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{width: '18px', height: '18px'}}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                  View Problem Statements
+                </a>
+              )}
               <button onClick={() => navigate('/')} className="explore-btn" style={{ background: 'white', color: 'var(--primary-color)', border: '2px solid var(--primary-color)' }}>
                 Explore Other Events
               </button>
@@ -191,6 +235,77 @@ export default function EventPage({ user }) {
               <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="form-input" disabled />
             </div>
 
+            {(event.title === 'Free Fire' || event.title === 'BGMI') && (
+              <>
+                <div className="form-group">
+                  <label>Roll No. *</label>
+                  <input type="text" required value={formData.rollNo} onChange={(e) => setFormData({...formData, rollNo: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Gender *</label>
+                  <select required value={formData.gender} onChange={(e) => setFormData({...formData, gender: e.target.value})} className="form-input">
+                    <option value="" disabled>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>House *</label>
+                  <input type="text" required value={formData.house} onChange={(e) => setFormData({...formData, house: e.target.value})} className="form-input" />
+                </div>
+
+                <div className="form-group">
+                  <label>WhatsApp Number *</label>
+                  <input type="tel" required value={formData.whatsappNumber} onChange={(e) => setFormData({...formData, whatsappNumber: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Player's Experience (in years) *</label>
+                  <input type="number" required min="0" value={formData.experience} onChange={(e) => setFormData({...formData, experience: e.target.value})} className="form-input" />
+                </div>
+              </>
+            )}
+
+            {event.title === 'Free Fire' && (
+              <>
+                <div className="form-group">
+                  <label>Freefire UID *</label>
+                  <input type="text" required value={formData.ffUid} onChange={(e) => setFormData({...formData, ffUid: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Freefire In-Game Name *</label>
+                  <input type="text" required value={formData.ffIgn} onChange={(e) => setFormData({...formData, ffIgn: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Do you want to use the Active skill in this tournament? *</label>
+                  <select required value={formData.activeSkill} onChange={(e) => setFormData({...formData, activeSkill: e.target.value})} className="form-input">
+                    <option value="" disabled>Select Yes/No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </>
+            )}
+
+            {event.title === 'BGMI' && (
+              <>
+                <div className="form-group">
+                  <label>BGMI Character ID (UID) *</label>
+                  <input type="text" required value={formData.bgmiUid} onChange={(e) => setFormData({...formData, bgmiUid: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>BGMI In-Game Name (IGN) *</label>
+                  <input type="text" required value={formData.bgmiIgn} onChange={(e) => setFormData({...formData, bgmiIgn: e.target.value})} className="form-input" />
+                </div>
+              </>
+            )}
+
             <div className="form-group">
               <label>Region *</label>
               <select required value={formData.region} onChange={(e) => setFormData({...formData, region: e.target.value})} className="form-input">
@@ -198,6 +313,18 @@ export default function EventPage({ user }) {
                 {regions.map(r => <option key={r} value={r}>{r}</option>)}
               </select>
             </div>
+
+            {event.title === 'Photopia' && (
+              <div className="form-group">
+                <label>Editing Level *</label>
+                <select required value={formData.editingLevel} onChange={(e) => setFormData({...formData, editingLevel: e.target.value})} className="form-input">
+                  <option value="" disabled>Select your editing level</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </div>
+            )}
 
             <div className="form-group">
               <label style={{ marginBottom: '1rem', display: 'block', fontWeight: '600' }}>How did you get to know about the event? *</label>
