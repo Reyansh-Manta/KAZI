@@ -362,9 +362,8 @@
 /* ==== RESPONSIVE ==== */
 @media (max-width: 768px) {
   .dashboard-header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
+    flex-direction: row;
+    padding: 1rem 1.5rem;
   }
   
   .user-email {
