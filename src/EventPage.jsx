@@ -193,7 +193,7 @@ export default function EventPage({ user }) {
               <a href="https://chat.whatsapp.com/placeholder" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
                 Join WhatsApp Group
               </a>
-              {event.title === 'IRIDESCENT: Let the ideas flow' && (
+              {event.title === 'IRIDESCENT' && (
                 <a href="https://binaryminds.vercel.app/events" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none', background: 'white', color: 'var(--primary-color)', border: '2px solid var(--primary-color)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{width: '18px', height: '18px'}}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
