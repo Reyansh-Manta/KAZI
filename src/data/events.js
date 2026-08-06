@@ -15,7 +15,7 @@ Rules:
 • No personal attacks, insults or use of offensive language.
 • No fabrication of statistics.
 • Time constraints must be respected.` },
-  { id: 3, title: 'Ideathon', community: 'Binary Minds', head: 'Technical', region: 'Mumbai', collab: 'Kolkata, Chennai, Bengaluru', requiresSubmission: true, time: '6:00 PM', date: '9 Aug', description: `Unleash your technical creativity at the Ideathon hosted by Binary Minds. Brainstorm, innovate, and pitch your ground-breaking ideas to solve real-world problems. Whether it is software, hardware, or a novel concept, bring your best ideas to the table.
+  { id: 3, title: 'IRIDESCENT: Let the ideas flow', community: 'Binary Minds', head: 'Technical', region: 'Mumbai', collab: 'Kolkata, Chennai, Bengaluru', requiresSubmission: true, time: '6:00 PM', date: '9 Aug', description: `Welcome to IRIDESCENT: Let the ideas flow, an Ideathon hosted by Binary Minds! An Ideathon is an intensive brainstorming event where creative minds gather to tackle pressing real-world challenges through innovative thinking. It’s not just about writing code or building physical prototypes—it's about conceptualizing groundbreaking solutions, validating their feasibility, and pitching them effectively. Whether your idea involves software, hardware, or a completely novel conceptual framework, this is your platform to bring your best ideas to the table and show how they can make a true impact.
 
 Format & Evaluation:
 • Round 1 (PPT Submission) - 40 Marks: Submit a presentation detailing your problem, solution, and expected impact.
