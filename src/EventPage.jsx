@@ -167,9 +167,11 @@ export default function EventPage({ user }) {
           style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.6', marginTop: '0.75rem', marginBottom: '1rem', whiteSpace: 'pre-wrap' }}
           dangerouslySetInnerHTML={{ __html: event.description }}
         />
+        
+        <hr style={{ border: 'none', borderTop: '1px solid rgba(26, 71, 49, 0.15)', margin: '1.5rem 0' }} />
 
         {success ? (
-          <div style={{ marginTop: '3rem', textAlign: 'center', padding: '2.5rem', background: 'rgba(39, 90, 62, 0.05)', borderRadius: '16px', border: '1px solid rgba(39, 90, 62, 0.1)' }}>
+          <div style={{ marginTop: '1rem', textAlign: 'center', padding: '2.5rem', background: 'rgba(39, 90, 62, 0.05)', borderRadius: '16px', border: '1px solid rgba(39, 90, 62, 0.1)' }}>
             <div style={{ width: '64px', height: '64px', background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto' }}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#166534" style={{width: '32px', height: '32px'}}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -218,7 +220,7 @@ export default function EventPage({ user }) {
             )}
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
+          <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
             {error && <div className="error-message">{error}</div>}
             
             <div className="form-group">
