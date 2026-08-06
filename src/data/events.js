@@ -19,10 +19,22 @@ Rules:
 
 Format & Evaluation:
 • Round 1 (PPT Submission) - 40 Marks: Submit a presentation detailing your problem, solution, and expected impact.
-  - Evaluation: Problem Understanding (10), Innovation (10), Feasibility (10), Clarity (10).
+<table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;">
+  <tr style="background: rgba(0,0,0,0.05);"><th style="padding: 8px; text-align: left; border: 1px solid rgba(0,0,0,0.1);">Criteria</th><th style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">Marks</th></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Problem Understanding</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Innovation & Creativity</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Feasibility & Practicality</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Presentation Quality & Clarity</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
+</table>
 
 • Round 2 (Google Meet) - 60 Marks: Shortlisted teams present live to judges, followed by a Q&A.
-  - Evaluation: Tech & Q&A (20), Presentation Skills (15), Scalability (15), Overall Impact (10).` },
+<table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px;">
+  <tr style="background: rgba(0,0,0,0.05);"><th style="padding: 8px; text-align: left; border: 1px solid rgba(0,0,0,0.1);">Criteria</th><th style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">Marks</th></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Technical Knowledge & Q&A</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">20</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Presentation & Communication Skills</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">15</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Solution Feasibility & Scalability</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">15</td></tr>
+  <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Overall Impact & Innovation</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
+</table>` },
   { id: 4, title: 'Photopia', community: 'Snap Sphere', head: 'Photography', region: 'Lucknow', collab: 'Chandigarh', requiresSubmission: true, time: '7:00', date: '8 Aug', description: 'Capture the essence of the event at Photopia. Show off your photography skills and creative eye in this visual storytelling competition by Snap Sphere. Bring your camera or smartphone, find the perfect angle, and tell a compelling story through your lens.' },
   { id: 5, title: 'Spotlight Showdown', community: 'Rang Manch', head: 'Cultural', region: 'Kolkata', collab: 'Mumbai', time: '8:00', date: '8 Aug', description: 'Experience an unforgettable evening of music, rhythm, and cultural performances at Spotlight Showdown, hosted by Rang Manch. Whether you are a performer ready to take the stage or a fan of live music, this event promises great vibes and incredible talent.' },
   { id: 6, title: 'Mehfil', community: 'Srijan', head: 'Cultural - Poetry', region: 'Delhi', collab: 'Chandigarh', time: '9:00', date: '8 Aug', description: 'Immerse yourself in the beauty of spoken word and poetry at Mehfil. Join Srijan for an evening dedicated to artistic expression, emotional depth, and cultural resonance. Share your own verses or simply enjoy the poetic atmosphere.' },

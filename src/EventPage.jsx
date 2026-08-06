@@ -163,9 +163,10 @@ export default function EventPage({ user }) {
           Presented by {event.region} Region (Collab: {event.collab})
         </p>
 
-        <p style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.6', marginTop: '0.75rem', marginBottom: '1rem', whiteSpace: 'pre-wrap' }}>
-          {event.description}
-        </p>
+        <div 
+          style={{ fontSize: '0.95rem', color: 'var(--text-primary)', lineHeight: '1.6', marginTop: '0.75rem', marginBottom: '1rem', whiteSpace: 'pre-wrap' }}
+          dangerouslySetInnerHTML={{ __html: event.description }}
+        />
 
         {success ? (
           <div style={{ marginTop: '3rem', textAlign: 'center', padding: '2.5rem', background: 'rgba(39, 90, 62, 0.05)', borderRadius: '16px', border: '1px solid rgba(39, 90, 62, 0.1)' }}>

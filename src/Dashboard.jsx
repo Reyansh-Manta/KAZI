@@ -64,7 +64,7 @@ export default function Dashboard({ user, handleLogout }) {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{width: '16px', height: '16px'}}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  TBA | Time TBA
+                  {event.date} | {event.time}
                 </div>
               </div>
               <button className="register-btn" style={{ background: 'var(--primary-color)', color: 'white', marginTop: '1.5rem', cursor: 'pointer' }}>View Event Page</button>
