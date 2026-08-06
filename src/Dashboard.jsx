@@ -67,7 +67,7 @@ export default function Dashboard({ user, handleLogout }) {
                   TBA | Time TBA
                 </div>
               </div>
-              <button className="register-btn" style={{ background: 'var(--primary-color)', color: 'white', marginTop: '1.5rem', cursor: 'pointer' }}>Register</button>
+              <button className="register-btn" style={{ background: 'var(--primary-color)', color: 'white', marginTop: '1.5rem', cursor: 'pointer' }}>View Event Page</button>
             </div>
           ))}
         </div>

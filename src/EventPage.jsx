@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { eventsList, regions } from './data/events';
 import { db } from './firebase';
-import { collection, addDoc, serverTimestamp, doc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, updateDoc, query, where, getDocs } from 'firebase/firestore';
 
 export default function EventPage({ user }) {
   const { id } = useParams();
@@ -27,6 +27,8 @@ export default function EventPage({ user }) {
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
+  const [checkingRegistration, setCheckingRegistration] = useState(true);
+
   // Redirect if not logged in
   useEffect(() => {
     if (!user) {
@@ -34,7 +36,37 @@ export default function EventPage({ user }) {
     }
   }, [user, navigate]);
 
+  // Check if already registered
+  useEffect(() => {
+    const checkRegistration = async () => {
+      if (!user || !event) return;
+      try {
+        const q = query(
+          collection(db, 'registrations'), 
+          where('eventId', '==', event.id),
+          where('userId', '==', user.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const docSnap = querySnapshot.docs[0];
+          setRegistrationId(docSnap.id);
+          const data = docSnap.data();
+          if (event.requiresSubmission && data.submissionLink) {
+            setSubmissionSuccess(true);
+          }
+          setSuccess(true);
+        }
+      } catch(err) {
+        console.error("Error checking registration:", err);
+      }
+      setCheckingRegistration(false);
+    };
+    
+    checkRegistration();
+  }, [user, event]);
+
   if (!event) return <div className="app-container" style={{color: 'white', paddingTop: '4rem'}}>Event not found</div>;
+  if (checkingRegistration) return <div className="app-container" style={{color: 'white', paddingTop: '4rem', textAlign: 'center'}}>Checking registration status...</div>;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,9 +140,15 @@ export default function EventPage({ user }) {
             </div>
             <h2 style={{ color: 'var(--primary-color)', marginBottom: '1rem', fontFamily: 'Playfair Display' }}>Registration Successful! 🎉</h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Please join the WhatsApp group for updates and further instructions regarding {event.title}.</p>
-            <a href="https://chat.whatsapp.com/placeholder" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
-              Join WhatsApp Group
-            </a>
+            
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://chat.whatsapp.com/placeholder" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
+                Join WhatsApp Group
+              </a>
+              <button onClick={() => navigate('/')} className="explore-btn" style={{ background: 'white', color: 'var(--primary-color)', border: '2px solid var(--primary-color)' }}>
+                Explore Other Events
+              </button>
+            </div>
 
             {event.requiresSubmission && !submissionSuccess && (
               <form onSubmit={handleLinkSubmit} style={{ marginTop: '3rem', padding: '1.5rem', background: 'white', borderRadius: '12px', border: '1px solid rgba(26, 71, 49, 0.2)', textAlign: 'left' }}>
