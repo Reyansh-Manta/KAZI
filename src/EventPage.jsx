@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { eventsList, regions } from './data/events';
 import { db } from './firebase';
-import { collection, addDoc, serverTimestamp, doc, updateDoc, query, where, getDocs } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, updateDoc, query, where, getDocs, getCountFromServer } from 'firebase/firestore';
 
 export default function EventPage({ user }) {
   const { id } = useParams();
@@ -35,6 +35,7 @@ export default function EventPage({ user }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [regCount, setRegCount] = useState(null);
   
   // Secondary form states
   const [registrationId, setRegistrationId] = useState(null);
@@ -89,6 +90,21 @@ export default function EventPage({ user }) {
     
     checkRegistration();
   }, [user, event]);
+
+  // Fetch registration count
+  useEffect(() => {
+    if (!event) return;
+    const fetchCount = async () => {
+      try {
+        const colRef = collection(db, `${event.title} registrations`);
+        const snapshot = await getCountFromServer(colRef);
+        setRegCount(snapshot.data().count);
+      } catch {
+        setRegCount(0);
+      }
+    };
+    fetchCount();
+  }, [event, success]);
 
   if (!event) return <div className="app-container" style={{color: 'white', paddingTop: '4rem'}}>Event not found</div>;
   if (checkingRegistration) return <div className="app-container" style={{color: 'white', paddingTop: '4rem', textAlign: 'center'}}>Checking registration status...</div>;
@@ -192,7 +208,29 @@ export default function EventPage({ user }) {
       </button>
       
       <div className="event-card" style={{ cursor: 'default', transform: 'none', background: 'rgba(255,255,255,0.95)', border: 'none', boxShadow: '0 25px 50px -12px rgba(26, 71, 49, 0.4)' }}>
-        <h1 className="hero-title" style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{event.title}</h1>
+        <h1 className="hero-title" style={{ fontSize: '2.5rem', marginBottom: '0.75rem', color: 'var(--text-primary)' }}>{event.title}</h1>
+        
+        {/* Registration Count Badge */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'linear-gradient(135deg, var(--primary-color), #2d8a5e)',
+          color: 'white',
+          padding: '8px 18px',
+          borderRadius: '24px',
+          fontSize: '0.9rem',
+          fontWeight: '700',
+          boxShadow: '0 4px 14px rgba(26, 71, 49, 0.3)',
+          marginBottom: '1rem',
+          letterSpacing: '0.02em'
+        }}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '16px', height: '16px' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+          </svg>
+          {regCount !== null ? `${regCount} Registered` : 'Loading…'}
+        </div>
+
         <p className="event-desc" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
           Hosted by <strong style={{ color: 'var(--primary-color)'}}>{event.community}</strong> ({event.head})<br/>
           Presented by {event.region} Region (Collab: {event.collab})
