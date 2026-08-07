@@ -17,6 +17,7 @@ export default function EventPage({ user }) {
     source: '',
     otherSource: '',
     editingLevel: '',
+    stance: '',
     gender: '',
     house: '',
     whatsappNumber: '',
@@ -112,6 +113,10 @@ export default function EventPage({ user }) {
       
       if (event.title === 'Photopia') {
         registrationData.editingLevel = formData.editingLevel;
+      }
+      
+      if (event.title === 'ABCD') {
+        registrationData.stance = formData.stance;
       }
       
       if (event.title === 'Free Fire' || event.title === 'BGMI') {
@@ -356,6 +361,17 @@ export default function EventPage({ user }) {
                   <input type="number" required min="0" value={formData.currentRating} onChange={(e) => setFormData({...formData, currentRating: e.target.value})} className="form-input" />
                 </div>
               </>
+            )}
+
+            {event.title === 'ABCD' && (
+              <div className="form-group">
+                <label>Your Stance *</label>
+                <select required value={formData.stance} onChange={(e) => setFormData({...formData, stance: e.target.value})} className="form-input">
+                  <option value="" disabled>Select your stance</option>
+                  <option value="For">For the motion</option>
+                  <option value="Against">Against the motion</option>
+                </select>
+              </div>
             )}
 
             <div className="form-group">
