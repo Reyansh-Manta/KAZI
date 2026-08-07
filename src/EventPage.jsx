@@ -17,7 +17,6 @@ export default function EventPage({ user }) {
     source: '',
     otherSource: '',
     editingLevel: '',
-    rollNo: '',
     gender: '',
     house: '',
     whatsappNumber: '',
@@ -116,7 +115,6 @@ export default function EventPage({ user }) {
       }
       
       if (event.title === 'Free Fire' || event.title === 'BGMI') {
-        registrationData.rollNo = formData.rollNo;
         registrationData.gender = formData.gender;
         registrationData.house = formData.house;
         registrationData.whatsappNumber = formData.whatsappNumber;
@@ -272,11 +270,6 @@ export default function EventPage({ user }) {
 
             {(event.title === 'Free Fire' || event.title === 'BGMI') && (
               <>
-                <div className="form-group">
-                  <label>Roll No. *</label>
-                  <input type="text" required value={formData.rollNo} onChange={(e) => setFormData({...formData, rollNo: e.target.value})} className="form-input" />
-                </div>
-                
                 <div className="form-group">
                   <label>Gender *</label>
                   <select required value={formData.gender} onChange={(e) => setFormData({...formData, gender: e.target.value})} className="form-input">
