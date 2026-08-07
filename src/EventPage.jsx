@@ -211,7 +211,7 @@ export default function EventPage({ user }) {
             <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Please join the WhatsApp group for updates and further instructions regarding {event.title}.</p>
             
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="https://chat.whatsapp.com/placeholder" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
+              <a href="https://chat.whatsapp.com/F49WNodvqa80tW0Ncj5mtR?s=cl&p=a&ilr=4" target="_blank" rel="noreferrer" className="explore-btn" style={{ textDecoration: 'none' }}>
                 Join WhatsApp Group
               </a>
               {event.title === 'IRIDESCENT' && (
