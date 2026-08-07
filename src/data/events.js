@@ -37,15 +37,6 @@ Format & Evaluation:
   <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Solution Feasibility & Scalability</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">15</td></tr>
   <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Overall Impact & Innovation</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
 </table>` },
-  { id: 4, title: 'Photopia', community: 'Snap Sphere', head: 'Photography', region: 'Lucknow', collab: 'Chandigarh', requiresSubmission: true, time: '7:00 PM', date: '8 Aug', description: `The RAW Editing Contest:
-This community event challenges members to transform a single unedited RAW file using their preferred editing software (e.g., AI tools,Lightroom, Photoshop, Capture One) to highlight different creative styles and color grading techniques.
-
-Release: The RAW file will be uploaded at kick-off.  
-Submission Format: Members submit a JPEG export to a dedicated channel/form.  
-Creative Note: Submissions must include a brief explanation of the participant's vision or color grading choices.
-
-Live Reveal: Top edits will be showcased on the meet.  
-Winner Q&A: Top editors get 2–3 minutes to explain their workflow, masking, and presets.` },
   { id: 5, title: 'Spotlight Showdown', community: 'Rang Manch', head: 'Cultural', region: 'Kolkata', collab: 'Mumbai', time: '8:00 PM', date: '8 Aug', description: 'Experience an unforgettable evening of music, rhythm, and cultural performances at Spotlight Showdown, hosted by Rang Manch. Whether you are a performer ready to take the stage or a fan of live music, this event promises great vibes and incredible talent.' },
   { id: 6, title: 'Mehfil', community: 'Srijan', head: 'Cultural - Poetry and Literature', region: 'Delhi', collab: 'Chandigarh', time: '9:00 PM', date: '8 Aug', description: 'Immerse yourself in the beauty of spoken word and poetry at Mehfil. Join Srijan for an evening dedicated to artistic expression, emotional depth, and cultural resonance. Share your own verses or simply enjoy the poetic atmosphere.' },
   { id: 7, title: 'Free Fire', community: 'Booyah Brigade', head: 'Free Fire', region: 'Chennai', collab: 'Bengaluru', time: '8:00 PM', date: '9 Aug', description: `Drop into the battleground and prove your survival skills in this high-stakes Free Fire tournament hosted by the Booyah Brigade. Coordinate with your squad, secure the best loot, and outlast the competition to claim the ultimate Booyah.
