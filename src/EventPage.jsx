@@ -25,6 +25,7 @@ export default function EventPage({ user }) {
     ffIgn: '',
     bgmiUid: '',
     bgmiIgn: '',
+    bgmiTeamName: '',
     experience: '',
     activeSkill: '',
     chessId: '',
@@ -137,6 +138,7 @@ export default function EventPage({ user }) {
       if (event.title === 'BGMI') {
         registrationData.bgmiUid = formData.bgmiUid;
         registrationData.bgmiIgn = formData.bgmiIgn;
+        registrationData.bgmiTeamName = formData.bgmiTeamName;
       }
 
       const docRef = await addDoc(collection(db, `${event.title} registrations`), registrationData);
@@ -335,6 +337,11 @@ export default function EventPage({ user }) {
                 <div className="form-group">
                   <label>BGMI In-Game Name (IGN) *</label>
                   <input type="text" required value={formData.bgmiIgn} onChange={(e) => setFormData({...formData, bgmiIgn: e.target.value})} className="form-input" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Team Name (NA if you don't have a team) *</label>
+                  <input type="text" required value={formData.bgmiTeamName} onChange={(e) => setFormData({...formData, bgmiTeamName: e.target.value})} className="form-input" />
                 </div>
               </>
             )}
