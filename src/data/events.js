@@ -17,7 +17,7 @@ Rules:
 • No personal attacks, insults or use of offensive language.
 • No fabrication of statistics.
 • Time constraints must be respected.` },
-  { id: 3, title: 'IRIDESCENT', community: 'Binary Minds', head: 'Technical', region: 'Mumbai', collab: 'Kolkata, Chennai, Bengaluru', requiresSubmission: true, time: '6:00 PM', date: '9 Aug', description: `Welcome to IRIDESCENT, the flagship Ideathon hosted by Binary Minds! Instead of a traditional hackathon where you're just glued to a screen writing code, IRIDESCENT is all about the raw power of your ideas. This is your chance to independently brainstorm wildly out-of-the-box solutions to real-world problems, and figure out how to actually bring them to life. Whether you're pitching a revolutionary app, a smart hardware prototype, or a completely new conceptual framework, we want to hear your vision. Bring your creativity, validate your solutions, and show our judges how you plan to make a true impact!
+  { id: 3, title: 'IRIDESCENT', community: 'Binary Minds', head: 'Technical', region: 'Mumbai', collab: 'Kolkata, Chennai, Bengaluru', time: '6:00 PM', date: '9 Aug', description: `Welcome to IRIDESCENT, the flagship Ideathon hosted by Binary Minds! Instead of a traditional hackathon where you're just glued to a screen writing code, IRIDESCENT is all about the raw power of your ideas. This is your chance to independently brainstorm wildly out-of-the-box solutions to real-world problems, and figure out how to actually bring them to life. Whether you're pitching a revolutionary app, a smart hardware prototype, or a completely new conceptual framework, we want to hear your vision. Bring your creativity, validate your solutions, and show our judges how you plan to make a true impact!
 
 Format & Evaluation:
 • Round 1 (PPT Submission) - 40 Marks: Submit a presentation detailing your problem, solution, and expected impact.
@@ -37,7 +37,7 @@ Format & Evaluation:
   <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Solution Feasibility & Scalability</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">15</td></tr>
   <tr><td style="padding: 8px; border: 1px solid rgba(0,0,0,0.1);">Overall Impact & Innovation</td><td style="padding: 8px; text-align: center; border: 1px solid rgba(0,0,0,0.1);">10</td></tr>
 </table>` },
-  { id: 4, title: 'Photopia', community: 'Snap Sphere', head: 'Photography', region: 'Lucknow', collab: 'Chandigarh', requiresSubmission: true, time: '7:00 PM', date: '8 Aug', description: `Welcome to Photopia! This time, we are challenging you to capture the essence of a specific theme.
+  { id: 4, title: 'Photopia', community: 'Snap Sphere', head: 'Photography', region: 'Lucknow', collab: 'Chandigarh', requiresSubmission: true, time: '3:00 PM', date: '9 Aug', description: `Welcome to Photopia! This time, we are challenging you to capture the essence of a specific theme.
 
 Theme: [THEME PLACEHOLDER]
 

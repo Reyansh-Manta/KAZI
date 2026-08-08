@@ -40,6 +40,7 @@ export default function EventPage({ user }) {
   // Secondary form states
   const [registrationId, setRegistrationId] = useState(null);
   const [submissionLink, setSubmissionLink] = useState('');
+  const [writeupLink, setWriteupLink] = useState('');
   const [submissionLoading, setSubmissionLoading] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [submissionDocId, setSubmissionDocId] = useState(null);
@@ -77,7 +78,9 @@ export default function EventPage({ user }) {
             if (!subSnap.empty) {
               setSubmissionSuccess(true);
               setSubmissionDocId(subSnap.docs[0].id);
-              setSubmissionLink(subSnap.docs[0].data().submissionLink);
+              const subData = subSnap.docs[0].data();
+              setSubmissionLink(subData.submissionLink);
+              if (subData.writeupLink) setWriteupLink(subData.writeupLink);
             }
           }
           setSuccess(true);
@@ -176,6 +179,7 @@ export default function EventPage({ user }) {
       if (submissionDocId) {
         await updateDoc(doc(db, `${event.title} submissions`, submissionDocId), {
           submissionLink: submissionLink,
+          writeupLink: writeupLink,
           timestamp: serverTimestamp()
         });
       } else {
@@ -183,6 +187,7 @@ export default function EventPage({ user }) {
           userId: user.uid,
           registrationId: registrationId,
           submissionLink: submissionLink,
+          writeupLink: writeupLink,
           timestamp: serverTimestamp()
         });
         setSubmissionDocId(docRef.id);
@@ -276,10 +281,17 @@ export default function EventPage({ user }) {
                   {event.title === 'Photopia' ? 'Submit Your Photograph' : 'Submit Your Presentation'}
                 </h3>
                 <div className="form-group">
-                  <label>Submission Link (Google Drive, etc.) *</label>
+                  <label>{event.title === 'Photopia' ? 'Photo Submission Link (Google Drive, etc.) *' : 'Submission Link (Google Drive, etc.) *'}</label>
                   <input type="url" required value={submissionLink} onChange={(e) => setSubmissionLink(e.target.value)} className="form-input" placeholder="https://..." />
                   <small style={{color: 'var(--text-secondary)', marginTop: '4px'}}>Please ensure the link is publicly accessible.</small>
                 </div>
+                {event.title === 'Photopia' && (
+                  <div className="form-group" style={{ marginTop: '1rem' }}>
+                    <label>Write-up Link (Google Docs, etc.) *</label>
+                    <input type="url" required value={writeupLink} onChange={(e) => setWriteupLink(e.target.value)} className="form-input" placeholder="https://..." />
+                    <small style={{color: 'var(--text-secondary)', marginTop: '4px'}}>Share a document explaining your motivation and choices. Please ensure it's publicly accessible.</small>
+                  </div>
+                )}
                 <button type="submit" disabled={submissionLoading} className="google-btn" style={{ marginTop: '1rem', borderRadius: '12px', padding: '10px 16px', width: 'auto' }}>
                   {submissionLoading ? 'Submitting...' : (submissionDocId ? 'Update Link' : 'Submit Link')}
                 </button>
