@@ -71,7 +71,7 @@ Tournament Conduct & Structure:
 </table>
 
 Kill Points: 1 point per kill (all the team players inclusive)` },
-  { id: 8, title: 'BGMI', community: 'Erangel Elite', head: 'BGMI', region: 'Patna', collab: 'Chandigarh', time: '10:00 PM', date: '8 Aug', description: 'Squad up and battle for the chicken dinner in the ultimate BGMI showdown, brought to you by Erangel Elite. Showcase your tactical prowess, precision aiming, and teamwork in this thrilling esports competition.' },
+  { id: 8, title: 'BGMI', community: 'Erangel Elite', head: 'BGMI', region: 'Patna', collab: 'Chandigarh', time: '10:00 PM', date: '8 Aug', registrationsClosed: true, description: 'Squad up and battle for the chicken dinner in the ultimate BGMI showdown, brought to you by Erangel Elite. Showcase your tactical prowess, precision aiming, and teamwork in this thrilling esports competition.' },
   { id: 9, title: 'Chaturanga', community: 'The Grandmasters Guild', head: 'Chess', region: 'Hyderabad', collab: 'Chennai', time: '8:00 PM', date: '9 Aug', description: 'Checkmate your opponents and showcase your strategic brilliance in Chaturanga, an intense chess tournament hosted by The Grandmasters Guild. Anticipate moves, control the board, and outsmart your rivals to emerge as the grand champion.' }
 ];
 
