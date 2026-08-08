@@ -304,6 +304,10 @@ export default function EventPage({ user }) {
               </div>
             )}
           </div>
+        ) : event.registrationsClosed ? (
+          <div style={{ marginTop: '2rem', padding: '2rem', textAlign: 'center', background: 'rgba(255, 59, 48, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 59, 48, 0.2)' }}>
+            <h3 style={{ color: '#d32f2f', margin: 0 }}>Registrations are closed for this event.</h3>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
             {error && <div className="error-message">{error}</div>}
