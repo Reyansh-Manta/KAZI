@@ -176,19 +176,24 @@ export default function EventPage({ user }) {
     e.preventDefault();
     setSubmissionLoading(true);
     try {
+      const submissionData = {
+        submissionLink: submissionLink,
+        writeupLink: writeupLink,
+        timestamp: serverTimestamp()
+      };
+      
+      if (event.title === 'Photopia') {
+        submissionData.email = user.email || formData.email || '';
+        submissionData.name = formData.name || user.displayName || '';
+      }
+
       if (submissionDocId) {
-        await updateDoc(doc(db, `${event.title} submissions`, submissionDocId), {
-          submissionLink: submissionLink,
-          writeupLink: writeupLink,
-          timestamp: serverTimestamp()
-        });
+        await updateDoc(doc(db, `${event.title} submissions`, submissionDocId), submissionData);
       } else {
         const docRef = await addDoc(collection(db, `${event.title} submissions`), {
           userId: user.uid,
           registrationId: registrationId,
-          submissionLink: submissionLink,
-          writeupLink: writeupLink,
-          timestamp: serverTimestamp()
+          ...submissionData
         });
         setSubmissionDocId(docRef.id);
       }
